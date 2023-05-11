@@ -1,7 +1,7 @@
 import { Animelayer } from './Animelayer.js';
 import { GMStore } from './GMStore.js';
-import { initButton } from './UI/button.js';
-import { initSettings } from './UI/settings.js';
+import { initButton } from './UI/Button.js';
+import { initSettings } from './UI/Settings.js';
 
 const store = new GMStore();
 const animelayer = new Animelayer(store);
