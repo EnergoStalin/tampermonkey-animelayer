@@ -10,6 +10,13 @@ initButton(animelayer);
 initSettings(store, animelayer);
 
 if(store.endpoint && store.secret) {
-  console.log(store.endpoint, store.secret);
-  animelayer.connect(store.endpoint, store.secret);
+  (async function() {
+    try {
+      await animelayer.connect(store.endpoint, store.secret);
+      console.log("Connected to", store.endpoint);
+    } catch(err) {
+      console.error(err);
+      alert("Connection failed", store.endpoint)
+    }
+  })()
 }

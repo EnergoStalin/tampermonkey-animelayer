@@ -3,13 +3,13 @@ export class GMStore {
     return GM_getValue("endpoint", "");
   }
   set endpoint(value) {
-    GM_getValue("endpoint", value);
+    GM_setValue("endpoint", value);
   }
 
   get secret() {
     return GM_getValue("secret", "");
   }
   set secret(value) {
-    GM_getValue("secret", value);
+    GM_setValue("secret", value);
   }
 }
