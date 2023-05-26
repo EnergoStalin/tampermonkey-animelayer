@@ -20,7 +20,7 @@ export default {
       name: 'Animelayer to Aria2',
       description: 'Hooks download button on animelayer and redirect download to aria2c',
       match: [
-        'http://animelayer.ru/torrent/*'
+        'https?://animelayer.ru/torrent/*'
       ],
       grant: [
         'GM_setValue',
