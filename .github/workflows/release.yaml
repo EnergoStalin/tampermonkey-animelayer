@@ -13,7 +13,7 @@ jobs:
         with:
           cache: yarn
           node-version: 20.x
-      - name: Pkg
+      - name: Install
         run: yarn
       - name: Build
         run: yarn build
