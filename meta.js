@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Animelayer to Aria2
 // @description Hooks download button on animelayer and redirect download to aria2c
-// @version 0.0.2
+// @version 0.0.3
 // @author EnergoStalin
 // @include /^https?://animelayer.ru/torrent/.*/
 // @grant GM_setValue
