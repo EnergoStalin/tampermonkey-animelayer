@@ -1,4 +1,5 @@
 import {blobToBase64} from '../utils.js';
+import iziToast from 'izitoast';
 
 /**
  * @param {import('../Animelayer').Animelayer} animelayer
@@ -14,7 +15,11 @@ export function initButton(animelayer) {
     const torrent = await (await fetch(e.target.href)).blob();
     const b64torrent = await blobToBase64(torrent);
 
-    await animelayer.downloadLastEpisode(b64torrent);
-    alert('Downloading...');
+    const items = await animelayer.downloadLastEpisode(b64torrent);
+
+    iziToast.info({
+      title: 'Downloading',
+      message: items.join('</br>'),
+    });
   });
 }

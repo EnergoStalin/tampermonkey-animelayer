@@ -1,3 +1,5 @@
+import iziToast from 'izitoast';
+
 /**
  * @param {import('../GMStore').GMStore} gmstore
  * @param {import('../Animelayer').Animelayer} animelayer
@@ -6,19 +8,28 @@ export function initSettings(gmstore, animelayer) {
   window.addEventListener('keydown', async (e) => {
     if (!(e.ctrlKey && e.key === 'm')) return;
 
-    gmstore.endpoint = prompt('New endpoint.');
-    gmstore.secret = prompt('New secret.');
+    const endpoint = prompt('New endpoint.');
+    const secret = prompt('New secret.');
 
     if (!gmstore.endpoint || !gmstore.secret) {
       return;
     }
 
+    gmstore.endpoint = endpoint;
+    gmstore.secret = secret;
+
     try {
       await animelayer.connect();
-      alert('Connected...');
+      iziToast.success({
+        title: 'Status',
+        message: 'Connected!',
+      });
     } catch (ex) {
       console.error(ex);
-      alert('Failed...');
+      iziToast.error({
+        title: 'Status',
+        message: 'Error(',
+      });
     }
   });
 }

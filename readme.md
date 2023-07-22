@@ -7,4 +7,4 @@ Currently only capable of downloading latest episode(subtitles included)
 
 ## Usage
 - To open settings press ctrl+m
-- To queue download of latest episode ctrl+click download torrent button
+- To queue download of latest episode shift+click download torrent button

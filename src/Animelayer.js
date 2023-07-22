@@ -14,15 +14,20 @@ export class Animelayer {
 
   /**
   * @param {string} b64
+  * @returns
   */
   async downloadLastEpisode(b64) {
     const id = await this.rpc.addTorrent(b64);
     const status = await this.rpc.status(id);
 
-    const files = status.files.map((e) => e.path).sort().splice(-2, 2);
+    const fontOut = status.files.filter((e) => !e.path.includes('font'));
+
+    const files = fontOut.map((e) => e.path).sort().splice(-2, 2);
     const ids = status.files.filter((e) => files.includes(e.path)).map((e) => e.index);
 
     await this.rpc.selectFiles(id, ids);
     await this.rpc.unpause(id);
+
+    return files;
   }
 }
