@@ -1,6 +1,6 @@
 {
   "name": "animelayer-aria2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "module": "esm",
@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "rollup --config --watch",
     "build": "rollup --config",
+    "serve": "http-server dist -c 1 -o",
     "lint": "eslint src/**/*.js src/*.js"
   },
   "keywords": [],
@@ -19,6 +20,7 @@
     "@types/tampermonkey": "^4.0.10",
     "eslint": ">=5.16.0",
     "eslint-config-google": "^0.14.0",
+    "http-server": "^14.1.1",
     "rollup": "^3.26.3",
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-uglify": "^6.0.4",

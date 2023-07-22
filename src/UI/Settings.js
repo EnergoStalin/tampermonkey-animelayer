@@ -11,7 +11,8 @@ export function initSettings(gmstore, animelayer) {
     const endpoint = prompt('New endpoint.');
     const secret = prompt('New secret.');
 
-    if (!gmstore.endpoint || !gmstore.secret) {
+    if (!endpoint || !secret) {
+      console.warn(endpoint, secret);
       return;
     }
 
