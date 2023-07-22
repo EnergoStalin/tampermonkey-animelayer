@@ -9,6 +9,10 @@ export function initSettings(gmstore, animelayer) {
     gmstore.endpoint = prompt('New endpoint.');
     gmstore.secret = prompt('New secret.');
 
+    if (!gmstore.endpoint || !gmstore.secret) {
+      return;
+    }
+
     try {
       await animelayer.connect();
       alert('Connected...');

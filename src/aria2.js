@@ -1,10 +1,14 @@
-import {WebSocketTransport, RequestManager, Client} from '@open-rpc/client-js';
+import {WebSocketTransport, RequestManager, Client, HTTPTransport} from '@open-rpc/client-js';
 
 export class Aria2 {
   #rpcMapping = {};
 
+  /**
+   * @param {string} endpoint
+   * @param {string} secret
+   */
   async connect(endpoint, secret) {
-    const transport = new WebSocketTransport(endpoint);
+    const transport = endpoint.startsWith('http') ? new HTTPTransport(endpoint) : new WebSocketTransport(endpoint);
     const requestManager = new RequestManager([transport]);
     const auth = `token:${secret}`;
 

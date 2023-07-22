@@ -6,7 +6,6 @@ import {initSettings} from './UI/Settings.js';
 const store = new GMStore();
 const animelayer = new Animelayer(store);
 
-initButton(animelayer);
 initSettings(store, animelayer);
 
 if (store.endpoint && store.secret) {
@@ -17,6 +16,9 @@ if (store.endpoint && store.secret) {
     } catch (err) {
       console.error(err);
       alert('Connection failed', store.endpoint);
+      return;
     }
+
+    initButton(animelayer);
   })();
 }
