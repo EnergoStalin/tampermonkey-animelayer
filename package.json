@@ -1,34 +1,47 @@
 {
   "name": "animelayer-aria2",
   "version": "0.0.4",
-  "description": "",
+  "description": "Hooks download button on animelayer and redirect download to aria2c",
+  "homepage": "https://github.com/EnergoStalin/tampermonkey-animelayer",
   "main": "index.js",
   "module": "esm",
   "type": "module",
   "scripts": {
-    "dev": "rollup --config --watch",
-    "build": "rollup --config",
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
     "serve": "http-server dist -c 1 -o",
     "lint": "eslint src/**/*.js src/*.js"
   },
   "keywords": [],
-  "author": "",
+  "repository": {
+    "url": "https://github.com/EnergoStalin/tampermonkey-animelayer"
+  },
+  "author": "EnergoStalin",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@tsconfig/svelte": "^5.0.0",
     "@types/tampermonkey": "^4.0.10",
     "eslint": ">=5.16.0",
     "eslint-config-google": "^0.14.0",
     "http-server": "^14.1.1",
     "rollup": "^3.26.3",
     "rollup-plugin-styles": "^4.0.0",
-    "rollup-plugin-uglify": "^6.0.4",
-    "rollup-plugin-url-resolve": "^0.2.0"
+    "rollup-plugin-svelte": "^7.1.6",
+    "svelte": "^4.1.1",
+    "svelte-check": "^3.4.6",
+    "svelte-preprocess": "^5.0.4",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "@open-rpc/client-js": "^1.8.1",
     "events": "^3.3.0",
+    "flowbite-svelte": "^0.40.1",
     "izitoast": "^1.4.0"
   }
 }

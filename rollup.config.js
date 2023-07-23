@@ -1,58 +1,64 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import terser from '@rollup/plugin-terser';
+import typescript from '@rollup/plugin-typescript';
+import svelte from 'rollup-plugin-svelte';
 import css from 'rollup-plugin-styles';
-import urlResolve from 'rollup-plugin-url-resolve';
+import sveltePreprocess from 'svelte-preprocess';
 import {defineConfig} from 'rollup';
-import {uglify} from 'rollup-plugin-uglify';
 import fs from 'fs';
+import meta from './meta.js';
 
-const isProd = ['ci', 'production'].includes(process.env.ENVIRONMENT);
-const addIfProd = (p) => isProd ? [p] : [];
-const addIfDev = (p) => !isProd ? [p] : [];
+const production = !process.env.ROLLUP_WATCH;
 
 export default defineConfig({
-  input: './src/index.js',
+  input: './src/index.ts',
   treeshake: 'recommended',
   plugins: [
-    urlResolve({
-      cacheManager: '.cache',
-    }),
+    svelte({
+			preprocess: sveltePreprocess(),
+      compilerOptions: {
+        sourcemap: false,
+      }
+		}),
+    css(),
     resolve({
       browser: true,
       preferBuiltins: false,
     }),
-    commonjs({
+    commonjs(),
+    typescript({
       sourceMap: false,
+      inlineSources: false
     }),
-    css(),
-    ...addIfProd(uglify()),
+    production && terser(),
     {
-      name: 'UserHeader',
+      name: 'Insert meta',
       renderChunk: (code) => {
-        return {code: fs.readFileSync('./meta.js') + code};
-      },
-    },
+        return {code: meta + '\n\n\n' + code}
+      }
+    }
   ],
   output: [
     {
-      file: 'dist/main.user.js',
-      format: 'esm',
+      file: 'dist/bundle.user.js',
+      format: 'iife',
+      name: 'app',
+      sourcemap: false,
     },
-    ...addIfDev({
-      file: 'dist/main.proxy.user.js',
+    !production && {
+      file: 'dist/bundle.proxy.user.js',
       plugins: [
         {
           name: 'GenProxy',
-          renderChunk: () => {
-            const meta = fs.readFileSync('./meta.js').toString('utf-8');
-            const proxy = fs.readFileSync('./proxy.js').toString('utf-8');
-            const lines = meta.split('\n').filter((e) => e.length);
-            lines.splice(lines.length - 1, 0, '// @grant GM_xmlhttpRequest');
-
-            return {code: lines.join('\n') + '\n\n\n' + proxy};
+          renderChunk: async () => {
+            return {code: meta + '\n\n\n' + fs.readFileSync('./proxy.js').toString('utf-8')};
           },
         },
       ],
-    }),
+    }
   ],
+  watch: {
+		clearScreen: false
+	}
 });

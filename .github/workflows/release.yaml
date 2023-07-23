@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: userscript
-          path: dist/main.user.js
+          path: dist/bundle.user.js
 
   release:
     needs: build
@@ -39,4 +39,4 @@ jobs:
           name: userscript
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "main.user.js"
+          artifacts: "bundle.user.js"

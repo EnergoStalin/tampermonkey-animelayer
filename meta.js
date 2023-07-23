@@ -1,11 +1,16 @@
+import pkg from './package.json' assert {type: 'json'};
+
+const production = !process.env.ROLLUP_WATCH;
+const extraGrant = !production ? '// @grant GM_xmlhttpRequest' : '';
+
+export default `
 // ==UserScript==
-// @name Animelayer to Aria2
-// @description Hooks download button on animelayer and redirect download to aria2c
-// @version 0.0.4
-// @author EnergoStalin
+// @name ${pkg.name}
+// @description ${pkg.description}
+// @version ${pkg.version}
+// @author ${pkg.author}
+// @icon https://www.google.com/s2/favicons?sz=64&domain=animelayer.ru
 // @include /^https?://animelayer.ru/torrent/.*/
 // @grant GM_setValue
-// @grant GM_getValue
-// @icon https://www.google.com/s2/favicons?sz=64&domain=animelayer.ru
-// ==/UserScript==
-
+// @grant GM_getValue\n${extraGrant}\n// ==/UserScript==
+`;

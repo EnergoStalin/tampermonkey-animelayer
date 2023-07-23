@@ -3,6 +3,8 @@ import {WebSocketTransport, RequestManager, Client, HTTPTransport} from '@open-r
 export class Aria2 {
   #rpcMapping = {};
 
+  public rpc: Client
+
   /**
    * @param {string} endpoint
    * @param {string} secret

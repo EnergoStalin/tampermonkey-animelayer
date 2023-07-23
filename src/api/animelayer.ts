@@ -1,12 +1,10 @@
+import type { GMStore } from '../GMStore.js';
 import {Aria2} from './aria2.js';
 
 export class Animelayer {
-  /**
-   * @param {import('./GMStore').GMStore} gmstore
-   */
-  constructor(gmstore) {
-    this.gmstore = gmstore;
-  }
+  private rpc: Aria2
+
+  constructor(private gmstore: GMStore) {}
 
   async connect(endpoint, secret) {
     this.rpc = await new Aria2().connect(endpoint ?? this.gmstore.endpoint, secret ?? this.gmstore.secret);
