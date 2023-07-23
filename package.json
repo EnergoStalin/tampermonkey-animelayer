@@ -26,6 +26,7 @@
     "@rollup/plugin-typescript": "^11.1.2",
     "@tsconfig/svelte": "^5.0.0",
     "@types/tampermonkey": "^4.0.10",
+    "@zerodevx/svelte-toast": "^0.9.5",
     "eslint": ">=5.16.0",
     "eslint-config-google": "^0.14.0",
     "http-server": "^14.1.1",
@@ -40,8 +41,6 @@
   },
   "dependencies": {
     "@open-rpc/client-js": "^1.8.1",
-    "events": "^3.3.0",
-    "flowbite-svelte": "^0.40.1",
-    "izitoast": "^1.4.0"
+    "events": "^3.3.0"
   }
 }

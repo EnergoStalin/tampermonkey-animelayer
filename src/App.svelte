@@ -1,32 +1,24 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
   import { animelayer, gmstore } from './store';
+  import ControlPane from './components/ControlPane.svelte';
+  import { SvelteToast } from '@zerodevx/svelte-toast';
+    import Settings from './components/Settings.svelte';
+
+  const a21 = document.body.querySelector('a.button-large:nth-child(1)') as HTMLLinkElement;
+  const parent = a21.parentElement;
+  parent.removeChild(a21);
+
+  const pane = new ControlPane({
+    target: parent,
+    props: {
+      href: a21.href
+    },
+  })
+
+  parent.style.display = 'flex';
+  parent.style.flexDirection = 'column-reverse';
 </script>
 
-<div class="overlay flex-container">
-  <div class="modal flex-container">
-    <p>This is text</p>
-  </div>
-</div>
-
-<style>
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-  }
-  .modal {
-    width: 30%;
-    background-color: rgb(94, 111, 128);
-    border-radius: 1em;
-  }
-</style>
+<SvelteToast />
+<Settings />

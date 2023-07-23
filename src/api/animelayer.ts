@@ -28,4 +28,8 @@ export class Animelayer {
 
     return files;
   }
+
+  isConnected() {
+    return !!this.rpc;
+  }
 }
