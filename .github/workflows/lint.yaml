@@ -4,11 +4,13 @@ on:
     branches: ["master"]
     paths:
       - "**.ts"
+      - "**.js"
       - "**.svelte"
   push:
     branches: ["master"]
     paths:
       - "**.ts"
+      - "**.js"
       - "**.svelte"
 
 jobs:
