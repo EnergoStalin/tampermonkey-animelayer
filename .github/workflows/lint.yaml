@@ -2,8 +2,14 @@ on:
   pull_request:
     types: ["opened", "ready_for_review", "review_requested"]
     branches: ["master"]
+    paths:
+      - "**.ts"
+      - "**.svelte"
   push:
     branches: ["master"]
+    paths:
+      - "**.ts"
+      - "**.svelte"
 
 jobs:
   lint:
